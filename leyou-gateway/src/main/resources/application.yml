@@ -1,0 +1,27 @@
+server:
+  port: 10010
+eureka:
+  client:
+    fetch-registry: true
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+    register-with-eureka: true
+    registry-fetch-interval-seconds: 5
+
+zuul:
+  host:
+    connect-timeout-millis: 15000 #HTTP连接超时大于Hystrix的超时时间
+    socket-timeout-millis: 60000   #socket超时
+  prefix: /api
+  routes:
+    item-service: /item/**
+    leyou-search: /search/**
+#    leyou-item-service:
+#      path: /item/**
+#      serviceId: leyou-item-service
+spring:
+  application:
+    name: leyou-gateway
+ribbon:        #设置ribbon的超时时间小于zuul的超时时间
+  ReadTimeout: 10000
+  ConnectTimeout: 10000
