@@ -1,5 +1,6 @@
 package cxt.cn.goods.controller;
 
+import cxt.cn.goods.service.GoodsHtmlService;
 import cxt.cn.goods.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,8 @@ public class GoodsController {
     @Autowired
     private GoodsService goodsService;
 
+    @Autowired
+    private GoodsHtmlService goodsHtmlService;
     /**
      * 跳转到商品详情页
      * @param model
@@ -33,6 +36,7 @@ public class GoodsController {
     public String toItemPage(Model model, @PathVariable("id")Long id){
         Map<String, Object> stringObjectMap = goodsService.loadData(id);
         model.addAllAttributes(stringObjectMap);
+        goodsHtmlService.asyncExcute(id);
         return "item";
     }
 }
