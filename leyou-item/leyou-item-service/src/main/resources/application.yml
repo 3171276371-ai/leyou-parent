@@ -22,3 +22,11 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/leyou?characterEncoding=utf8&useSSL=false&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
+  rabbitmq:
+    username: leyou
+    password: leyou
+    virtual-host: /leyou
+    template:
+      exchange: LEYOU.ITEM.EXCHANGE
+      publisher-confirms: true
+    host: 192.168.28.134

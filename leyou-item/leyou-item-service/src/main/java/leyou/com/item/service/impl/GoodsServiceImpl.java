@@ -3,6 +3,10 @@ package leyou.com.item.service.impl;
 import leyou.com.item.dao.*;
 import leyou.com.item.pojo.*;
 import leyou.com.item.service.GoodsService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.amqp.AmqpException;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,6 +35,9 @@ public class GoodsServiceImpl implements GoodsService {
     private SpuDao spuDao;
     @Autowired
     private StockDao stockDao;
+    @Autowired
+    private AmqpTemplate amqpTemplate;
+    public static final Logger LOGGER = LoggerFactory.getLogger(GoodsServiceImpl.class);
     @Transactional
     @Override
     public void saveGoods(SpuBo spuBo) {
@@ -49,6 +56,15 @@ public class GoodsServiceImpl implements GoodsService {
         this.spuDetailDao.insertSelective(spuDetail);
 
         saveSkuAndStock(spuBo);
+        sendMessage("insert",spuBo.getId());
+    }
+
+    private void sendMessage(String type, Long id) {
+        try {
+            amqpTemplate.convertAndSend("item." + type, id);
+        } catch (AmqpException e) {
+            LOGGER.error("{}商品消息发送异常，商品id：{}", type, id, e);
+        }
     }
 
     @Override
@@ -56,6 +72,7 @@ public class GoodsServiceImpl implements GoodsService {
         TbSpu tbSpu = new TbSpu();
         tbSpu.setId(id);
         spuDao.delete(tbSpu);
+        sendMessage("delete",id);
     }
     @Transactional
     @Override
@@ -88,6 +105,7 @@ public class GoodsServiceImpl implements GoodsService {
 
         // 更新spu详情
         this.spuDetailDao.updateByPrimaryKeySelective(spu.getSpuDetail());
+        sendMessage("update",spu.getId());
     }
 
     private List<TbSku> querySkuBySpuId(Long id) {

@@ -60,6 +60,8 @@
                 <artifactId>mapper-spring-boot-starter</artifactId>
                 <version>${mapper.starter.version}</version>
             </dependency>
+<!--            swagger-->
+
             <!-- 分页助手启动器 -->
             <dependency>
                 <groupId>com.github.pagehelper</groupId>

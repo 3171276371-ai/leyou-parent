@@ -319,6 +319,16 @@ public class GoodsService {
         }
         return categories;
     }
+
+    public void createIndex(Long spuId) throws IOException {
+        TbSpu tbSpu = goodsClient.querySpuById(spuId);
+        Goods goods = buildGoods(tbSpu);
+        goodsRepository.save(goods);
+    }
+
+    public void deleteGoods(Long spuId) {
+        this.goodsRepository.deleteById(spuId);
+    }
 }
 
 
