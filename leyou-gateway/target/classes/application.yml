@@ -16,6 +16,7 @@ zuul:
   routes:
     item-service: /item/**
     leyou-search: /search/**
+    leyou-user: /user/**
 #    leyou-item-service:
 #      path: /item/**
 #      serviceId: leyou-item-service
