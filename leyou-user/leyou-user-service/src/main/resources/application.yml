@@ -2,12 +2,19 @@ server:
   port: 8082
 spring:
   application:
-    name: leyou-user
+    name: leyou-service
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/leyou?characterEncoding=utf8&useSSL=false&serverTimezone=UTC
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    host: 192.168.28.134
+  rabbitmq:
+    host: 192.168.28.134
+    username: leyou
+    password: leyou
+    virtual-host: /leyou
 eureka:
   client:
     service-url:
@@ -15,6 +22,5 @@ eureka:
   instance:
     lease-renewal-interval-in-seconds: 5
     lease-expiration-duration-in-seconds: 15
-
 mybatis:
   type-aliases-package: leyou.com.user.pojo

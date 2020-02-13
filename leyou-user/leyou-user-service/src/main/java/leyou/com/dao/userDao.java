@@ -9,5 +9,5 @@ import tk.mybatis.mapper.common.Mapper;
  * @Date:Create in 2020/2/11 13:31
  * @Modeified By:
  */
-public interface userMapper extends Mapper<TbUser> {
+public interface userDao extends Mapper<TbUser> {
 }

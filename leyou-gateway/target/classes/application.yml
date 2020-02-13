@@ -16,10 +16,10 @@ zuul:
   routes:
     item-service: /item/**
     leyou-search: /search/**
-    leyou-user: /user/**
-#    leyou-item-service:
-#      path: /item/**
-#      serviceId: leyou-item-service
+    leyou-service: /user/**
+    auth-service: /auth/** # 授权中心微服务
+  sensitive-headers:
+  add-host-header: true
 spring:
   application:
     name: leyou-gateway

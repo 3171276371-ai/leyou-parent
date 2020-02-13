@@ -34,7 +34,7 @@ public class SmsListener {
 
     @RabbitListener(bindings = @QueueBinding(
             value = @Queue(value = "LEYOU.SMS.QUEUE",durable = "true"),
-            exchange = @Exchange(type = ExchangeTypes.TOPIC,ignoreDeclarationExceptions = "true"),
+            exchange = @Exchange(value = "LEYOU.SMS.EXCHANGE", type = ExchangeTypes.TOPIC,ignoreDeclarationExceptions = "true"),
             key = {"sms.verify.code"}
     ))
     public void listen(Map<String, String> msg) throws ClientException {
@@ -54,5 +54,6 @@ public class SmsListener {
                 smsConfig.getSignName(),
                 smsConfig.getVerifyCodeTemplate());
     }
+
 
 }
