@@ -32,6 +32,8 @@ public class JwtProperties {
 
     private String cookieName;
 
+    private int CookieMaxAge;
+
     private static final Logger logger = LoggerFactory.getLogger(JwtProperties.class);
 
     /**
@@ -109,5 +111,13 @@ public class JwtProperties {
 
     public void setCookieName(String cookieName) {
         this.cookieName = cookieName;
+    }
+
+    public int getCookieMaxAge() {
+        return CookieMaxAge;
+    }
+
+    public void setCookieMaxAge(int cookieMaxAge) {
+        CookieMaxAge = cookieMaxAge;
     }
 }

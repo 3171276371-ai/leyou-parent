@@ -16,8 +16,9 @@ zuul:
   routes:
     item-service: /item/**
     leyou-search: /search/**
-    leyou-service: /user/**
+    user-service: /user/**
     auth-service: /auth/** # 授权中心微服务
+    cart-service: /cart/**
   sensitive-headers:
   add-host-header: true
 spring:
@@ -26,3 +27,16 @@ spring:
 ribbon:        #设置ribbon的超时时间小于zuul的超时时间
   ReadTimeout: 10000
   ConnectTimeout: 10000
+leyou:
+  jwt:
+    pubKeyPath: D:\studysofteware\key\rsa.pub # 公钥地址
+    cookieName: LY_TOKEN
+    CookieMaxAge: 1800
+  filter:
+    allowPaths:
+      - /api/auth
+      - /api/search
+      - /api/user/register
+      - /api/user/check
+      - /api/user/code
+      - /api/item

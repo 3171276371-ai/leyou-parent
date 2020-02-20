@@ -1,6 +1,7 @@
 package leyou.com.item.service;
 
 import leyou.com.item.pojo.SpuBo;
+import leyou.com.item.pojo.TbSku;
 import leyou.com.item.pojo.TbSpu;
 
 /**
@@ -34,4 +35,11 @@ public interface GoodsService {
      * @return
      */
     TbSpu querySpuById(Long pid);
+
+    /**
+     * 根据sku查询商品详情
+     * @param skuId
+     * @return
+     */
+    TbSku querySkuById(Long skuId);
 }

@@ -2,7 +2,7 @@ server:
   port: 8082
 spring:
   application:
-    name: leyou-service
+    name: user-service
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/leyou?characterEncoding=utf8&useSSL=false&serverTimezone=UTC
     username: root

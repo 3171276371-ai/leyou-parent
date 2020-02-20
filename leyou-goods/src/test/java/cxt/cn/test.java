@@ -1,7 +1,9 @@
 package cxt.cn;
 
+import cxt.cn.goods.client.GoodsClient;
 import cxt.cn.goods.client.SpecClient;
 import leyou.com.item.pojo.TbSpecParam;
+import leyou.com.item.pojo.TbSpu;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +24,25 @@ public class test {
     @Autowired
     private SpecClient specClient;
 
+    @Autowired
+    private GoodsClient goodsClient;
     @Test
     public void test(){
         List<TbSpecParam> params = this.specClient.querySpecParam(null, 76L, null, null);
         for (TbSpecParam param : params) {
             System.out.println(param);
         }
+    }
+    @Test
+    public void test1(){
+        List<TbSpecParam> params = this.specClient.querySpecParam(null, 76L, null, null);
+        for (TbSpecParam param : params) {
+            System.out.println(param);
+        }
+    }
+    @Test
+    public void test2(){
+        TbSpu tbSpu = goodsClient.querySpuById(2L);
+        System.out.println(tbSpu);
     }
 }

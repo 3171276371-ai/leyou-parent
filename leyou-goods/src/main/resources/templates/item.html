@@ -225,17 +225,17 @@
                             <div class="fl title">
                                 <div class="control-group">
                                     <div class="controls">
-                                        <input autocomplete="off" class="itxt" disabled minnum="1" type="text"
+                                        <input autocomplete="off" class="itxt" v-model="num" disabled minnum="1" type="text"
                                                value="1"/>
-                                        <a class="increment plus" href="javascript:void(0)">+</a>
-                                        <a class="increment mins" href="javascript:void(0)">-</a>
+                                        <a class="increment plus" href="javascript:void(0)" @click="plus()">+</a>
+                                        <a class="increment mins" href="javascript:void(0)" @click="mins()">-</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="fl">
                                 <ul class="btn-choose unstyled">
                                     <li>
-                                        <a class="sui-btn  btn-danger addshopcar" href="success-cart.html"
+                                        <a class="sui-btn  btn-danger addshopcar"  @click="addCart()"
                                            target="_blank">加入购物车</a>
                                     </li>
                                 </ul>
@@ -638,10 +638,47 @@
             specialSpec,
             indexes,
             genericSpec,
-            spuDetail
+            spuDetail,
+            num: 1
         },
         components: {
             lyTop: () => import('/js/pages/top.js')
+        },
+        methods:{
+            addCart(){
+                ly.http.get("/auth/verify").then(res=>{
+                    ly.http.post("/cart",{skuId: this.sku.id, num: this.num}).then(res=>{
+                        window.location = "http://www.leyou.com/cart.html";
+                    })
+                }).catch(()=>{
+                    let carts = ly.store.get("carts")||[];
+                    let cart = carts.find(cart=>cart.skuId==this.sku.id);
+                    if (cart){
+                        cart.num=cart.num+this.num;
+                    }else {
+                        cart={
+                            skuId:this.sku.id,
+                            image:this.images[0],
+                            title:this.sku.title,
+                            ownSpec:this.sku.ownSpec,
+                            price:this.sku.price,
+                            num:this.num
+                        };
+                        carts.push(cart)
+                    }
+                    ly.store.set("carts",carts);
+                    window.location = "http://www.leyou.com/cart.html";
+
+                })
+            },
+            plus(){
+                this.num++;
+            },
+            mins(){
+                if (this.num>1){
+                    this.num--;
+                }
+            }
         },
         computed: {
             sku() {

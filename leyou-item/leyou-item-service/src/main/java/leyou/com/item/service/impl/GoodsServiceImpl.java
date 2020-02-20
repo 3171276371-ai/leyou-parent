@@ -134,4 +134,9 @@ public class GoodsServiceImpl implements GoodsService {
     public TbSpu querySpuById(Long pid) {
         return  spuDao.selectByPrimaryKey(pid);
     }
+
+    @Override
+    public TbSku querySkuById(Long skuId) {
+        return skuDao.selectByPrimaryKey(skuId);
+    }
 }

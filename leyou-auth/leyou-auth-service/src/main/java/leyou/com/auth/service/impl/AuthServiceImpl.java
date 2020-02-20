@@ -32,7 +32,7 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public String login(String username, String password) {
         TbUser tbUser = client.login(username, password);
-        System.out.println(tbUser);
+        System.out.println();
         if (tbUser==null){
             return null;
         }
@@ -43,4 +43,6 @@ public class AuthServiceImpl implements AuthService {
           return null;
         }
     }
+
+
 }

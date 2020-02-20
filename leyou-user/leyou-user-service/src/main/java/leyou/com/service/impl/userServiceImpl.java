@@ -37,6 +37,8 @@ public class userServiceImpl implements userService {
 
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
+
+
     /**
      * 校验用户登录
      * @param data
@@ -116,7 +118,7 @@ public class userServiceImpl implements userService {
         // 查询
         TbUser record = new TbUser();
         record.setUsername(username);
-        TbUser user = this.userDao.selectOne(record);
+        TbUser user = userDao.selectOne(record);
         // 校验用户名
         if (user == null) {
             return null;

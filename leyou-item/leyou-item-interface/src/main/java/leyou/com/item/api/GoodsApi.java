@@ -60,4 +60,12 @@ public interface GoodsApi {
      */
     @GetMapping("spu/{id}")
     TbSpu querySpuById(@PathVariable("id") Long pid);
+
+    /**
+     * 根据skuid查询商品
+     * @param pid
+     * @return
+     */
+    @GetMapping("sku/{id}")
+    TbSku querySkuById(@PathVariable("id")Long pid);
 }

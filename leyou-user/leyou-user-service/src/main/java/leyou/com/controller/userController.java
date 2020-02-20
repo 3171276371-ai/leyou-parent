@@ -74,6 +74,7 @@ public class userController {
         if (user==null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(HttpStatus.OK);
+        return ResponseEntity.ok(user);
     }
+
 }

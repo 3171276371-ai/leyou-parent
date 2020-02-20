@@ -18,3 +18,7 @@ leyou:
     priKeyPath: D:\studysofteware\key\rsa.pri # 私钥地址
     expire: 30 # 过期时间,单位分钟
     cookieName: LY_TOKEN
+    CookieMaxAge: 1800
+
+ribbon:
+  ConnectTimeout=1000:

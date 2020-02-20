@@ -15,4 +15,5 @@ public interface AuthService {
      * @return
      */
     String login(String username, String password);
+
 }

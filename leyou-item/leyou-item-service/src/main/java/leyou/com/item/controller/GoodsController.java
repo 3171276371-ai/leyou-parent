@@ -2,6 +2,7 @@ package leyou.com.item.controller;
 
 import leyou.com.item.pojo.SpuBo;
 import leyou.com.item.pojo.TbCategory;
+import leyou.com.item.pojo.TbSku;
 import leyou.com.item.pojo.TbSpu;
 import leyou.com.item.service.CategoryService;
 import leyou.com.item.service.GoodsService;
@@ -83,6 +84,20 @@ public class GoodsController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(tbSpu);
+    }
+
+    /**
+     * 根据skuid查询商品
+     * @param pid
+     * @return
+     */
+    @GetMapping("sku/{id}")
+    public ResponseEntity<TbSku> querySkuById(@PathVariable("id")Long pid){
+        TbSku tbSku =  goodsService.querySkuById(pid);
+        if (tbSku==null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(tbSku);
     }
 
 
