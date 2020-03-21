@@ -79,11 +79,11 @@
                 <version>8.0.18</version>
             </dependency>
             <!--FastDFS客户端-->
-            <dependency>
-                <groupId>org.csource</groupId>
-                <artifactId>fastdfs-client-java</artifactId>
-                <version>${fastDFS.client.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.csource</groupId>-->
+                <!--<artifactId>fastdfs-client-java</artifactId>-->
+                <!--<version>${fastDFS.client.version}</version>-->
+            <!--</dependency>-->
         </dependencies>
     </dependencyManagement>
 
